@@ -1,8 +1,12 @@
 package com.epicode.spring_w1_d2.runner;
 
 import com.epicode.spring_w1_d2.entity.Menu;
+import com.epicode.spring_w1_d2.entity.Ordine;
+import com.epicode.spring_w1_d2.entity.Tavolo;
 import com.epicode.spring_w1_d2.repository.MenuRepo;
+import com.epicode.spring_w1_d2.services.OrdiniETavoliService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
@@ -18,6 +22,10 @@ public class MenuRunner implements ApplicationRunner {
 
     private final MenuRepo menuRepo;
     private final Logger logger;
+    private final OrdiniETavoliService service;
+    private final ObjectProvider<Ordine> ordineProvider;
+    private ObjectProvider<Tavolo> tavoloProvider;
+
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
@@ -25,6 +33,8 @@ public class MenuRunner implements ApplicationRunner {
         List<Menu> listaMenu = menuRepo.findAll();
 
         listaMenu.forEach(menu -> logger.info(menu.stampa()));
+
+
 
     }
 }

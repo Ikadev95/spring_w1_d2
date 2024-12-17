@@ -24,4 +24,6 @@ public abstract class Menu {
         String s = "nome: " + this.nome + " prezzo: " + this.prezzo + " euro" + " calorie: " + this.calorie + "cal" ;
         return s;
     }
+
+
 }
