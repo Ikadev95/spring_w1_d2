@@ -34,6 +34,7 @@ public class Ordine {
     @Value ("${application.costo_coperto}")
     double costoCoperto;
 
+    @OneToMany
     private List<Menu> elementi;
 
     private double calcolaImportoTotale() {

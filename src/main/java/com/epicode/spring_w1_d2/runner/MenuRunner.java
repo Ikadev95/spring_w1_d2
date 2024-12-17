@@ -7,13 +7,14 @@ import com.epicode.spring_w1_d2.repository.MenuRepo;
 import com.epicode.spring_w1_d2.services.OrdiniETavoliService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 
 @Component
 @RequiredArgsConstructor
@@ -24,15 +25,19 @@ public class MenuRunner implements ApplicationRunner {
     private final Logger logger;
     private final OrdiniETavoliService service;
     private final ObjectProvider<Ordine> ordineProvider;
-    private ObjectProvider<Tavolo> tavoloProvider;
 
+    @Qualifier("tavolo1")
+    private final Tavolo tavolo1;
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
         List<Menu> listaMenu = menuRepo.findAll();
-
         listaMenu.forEach(menu -> logger.info(menu.stampa()));
+
+        Ordine ordine = ordineProvider.getObject();
+
+        service.salvaTavoliEOrdini(tavolo1, ordine);
 
 
 
