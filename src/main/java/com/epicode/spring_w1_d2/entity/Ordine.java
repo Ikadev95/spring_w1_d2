@@ -37,10 +37,21 @@ public class Ordine {
     @OneToMany
     private List<Menu> elementi;
 
-    private double calcolaImportoTotale() {
-
+    public double calcolaImportoTotale() {
         double sommaElementi = elementi.stream().mapToDouble(Menu::getPrezzo).sum();
-        return sommaElementi + (copertiEffettivi * costoCoperto);
+        sommaElementi = sommaElementi + (copertiEffettivi * costoCoperto);
+        this.importoTot = sommaElementi;
+
+        return sommaElementi;
+    }
+
+    public String stampa(){
+        String prodotti = "";
+        for (int i = 0; i < this.getElementi().size(); i++) {
+            prodotti += this.getElementi().get(i).stampa();
+        }
+        String x = "numero ordine: " + this.id + " stato: " + this.statoOrdineEnum + " costoTot: " + this.importoTot + " prodotti: " + prodotti;
+        return x;
     }
 
 }

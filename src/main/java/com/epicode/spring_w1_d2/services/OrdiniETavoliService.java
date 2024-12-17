@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class OrdiniETavoliService {
@@ -22,5 +24,5 @@ public class OrdiniETavoliService {
         o.setTavolo(t);
     }
 
-
+    public List<Ordine> getOrdini() {return ordineRepo.findAll();}
 }
