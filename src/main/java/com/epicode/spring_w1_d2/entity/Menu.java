@@ -20,4 +20,8 @@ public abstract class Menu {
     @Column(name = "prezzo")
     protected double prezzo;
 
+    public String stampa(){
+        String s = "nome: " + this.nome + " prezzo: " + this.prezzo + " euro" + " calorie: " + this.calorie + "cal" ;
+        return s;
+    }
 }
